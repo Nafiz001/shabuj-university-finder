@@ -411,7 +411,13 @@ export function filterUniversities(params: FilterParams): University[] {
     filtered.sort((a, b) => {
       const field = params.sortBy!;
       const order = params.order === 'desc' ? -1 : 1;
-      return (a[field] - b[field]) * order;
+      
+      if (field === 'tuition') {
+        return (a.tuitionFee - b.tuitionFee) * order;
+      } else if (field === 'ranking') {
+        return (a.ranking - b.ranking) * order;
+      }
+      return 0;
     });
   }
 
