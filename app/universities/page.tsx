@@ -135,8 +135,3 @@ export default function UniversitiesPage({ searchParams }: PageProps) {
     </>
   );
 }
-        )}
-      </div>
-    </main>
-  );
-}
