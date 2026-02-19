@@ -30,8 +30,27 @@ export default function CompareModal({ universityIds, onClose }: CompareModalPro
 
   const [uni1, uni2] = universities as University[];
 
-  // Get first letter for avatar
-  const getInitial = (name: string) => name.charAt(0).toUpperCase();
+  // Extract meaningful initials from university name
+  const getInitials = (name: string) => {
+    // Remove common words and get significant words
+    const commonWords = ['university', 'of', 'the', 'institute', 'college', 'school'];
+    const words = name.toLowerCase().split(' ').filter(word => !commonWords.includes(word));
+    
+    if (words.length === 0) {
+      // Fallback to first letter if all words are common
+      return name.charAt(0).toUpperCase();
+    }
+    
+    // For single significant word, return first 2 letters
+    if (words.length === 1) {
+      return words[0].slice(0, 2).toUpperCase();
+    }
+    
+    // For multiple words, return first letter of first 2-3 words
+    return words.slice(0, Math.min(3, words.length))
+      .map(word => word.charAt(0).toUpperCase())
+      .join('');
+  };
 
   // Generate color based on university name
   const getAvatarColor = (name: string) => {
@@ -110,8 +129,8 @@ export default function CompareModal({ universityIds, onClose }: CompareModalPro
               
               {/* University Header */}
               <div className="flex flex-col items-center mb-4 h-[80px] justify-center">
-                <div className={`w-12 h-12 ${uni1Color.bg} rounded-full flex items-center justify-center mb-2 text-xl font-bold ${uni1Color.text} shadow-inner`}>
-                  {getInitial(uni1.name)}
+                <div className={`w-14 h-14 ${uni1Color.bg} rounded-full flex items-center justify-center mb-2 text-base font-bold ${uni1Color.text} shadow-inner`}>
+                  {getInitials(uni1.name)}
                 </div>
                 <h3 className="text-base font-bold text-center text-slate-900 dark:text-white leading-tight">
                   {uni1.name}
@@ -192,8 +211,8 @@ export default function CompareModal({ universityIds, onClose }: CompareModalPro
               
               {/* University Header */}
               <div className="flex flex-col items-center mb-4 h-[80px] justify-center">
-                <div className={`w-12 h-12 ${uni2Color.bg} rounded-full flex items-center justify-center mb-2 text-xl font-bold ${uni2Color.text} shadow-inner`}>
-                  {getInitial(uni2.name)}
+                <div className={`w-14 h-14 ${uni2Color.bg} rounded-full flex items-center justify-center mb-2 text-base font-bold ${uni2Color.text} shadow-inner`}>
+                  {getInitials(uni2.name)}
                 </div>
                 <h3 className="text-base font-bold text-center text-slate-900 dark:text-white leading-tight">
                   {uni2.name}
