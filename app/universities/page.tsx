@@ -5,12 +5,13 @@ import UniversityList from '@/components/UniversityList';
 import Navbar from '@/components/Navbar';
 
 interface PageProps {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  const country = searchParams.country as string;
-  const sortBy = searchParams.sortBy as string;
+  const params = await searchParams;
+  const country = params.country as string;
+  const sortBy = params.sortBy as string;
 
   let title = 'Find Universities | Shabuj University Finder';
   let description = 'Discover the perfect university for your study abroad journey. Filter by country, tuition fee, ranking, and more.';
@@ -34,33 +35,35 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   };
 }
 
-export default function UniversitiesPage({ searchParams }: PageProps) {
+export default async function UniversitiesPage({ searchParams }: PageProps) {
+  const params = await searchParams;
+  
   // Parse search parameters for server-side filtering
   const filterParams: FilterParams = {
-    country: searchParams.country as string,
-    minTuition: searchParams.minTuition
-      ? Number(searchParams.minTuition)
+    country: params.country as string,
+    minTuition: params.minTuition
+      ? Number(params.minTuition)
       : undefined,
-    maxTuition: searchParams.maxTuition
-      ? Number(searchParams.maxTuition)
+    maxTuition: params.maxTuition
+      ? Number(params.maxTuition)
       : undefined,
-    minRanking: searchParams.minRanking
-      ? Number(searchParams.minRanking)
+    minRanking: params.minRanking
+      ? Number(params.minRanking)
       : undefined,
-    maxRanking: searchParams.maxRanking
-      ? Number(searchParams.maxRanking)
+    maxRanking: params.maxRanking
+      ? Number(params.maxRanking)
       : undefined,
-    establishedAfter: searchParams.establishedAfter
-      ? Number(searchParams.establishedAfter)
+    establishedAfter: params.establishedAfter
+      ? Number(params.establishedAfter)
       : undefined,
-    scholarshipAvailable: searchParams.scholarshipAvailable
-      ? searchParams.scholarshipAvailable === 'true'
+    scholarshipAvailable: params.scholarshipAvailable
+      ? params.scholarshipAvailable === 'true'
       : undefined,
-    maxIelts: searchParams.maxIelts
-      ? Number(searchParams.maxIelts)
+    maxIelts: params.maxIelts
+      ? Number(params.maxIelts)
       : undefined,
-    sortBy: searchParams.sortBy as 'tuition' | 'ranking',
-    order: searchParams.order as 'asc' | 'desc',
+    sortBy: params.sortBy as 'tuition' | 'ranking',
+    order: params.order as 'asc' | 'desc',
   };
 
   // Server-side filtering
