@@ -135,19 +135,6 @@ export default function UniversitiesPage({ searchParams }: PageProps) {
     </>
   );
 }
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              No universities found
-            </h2>
-            <p className="text-gray-600 mb-6">
-              Try adjusting your filters to see more results
-            </p>
-            <a
-              href="/universities"
-              className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200"
-            >
-              Clear All Filters
-            </a>
-          </div>
         )}
       </div>
     </main>
