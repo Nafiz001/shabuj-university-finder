@@ -6,6 +6,22 @@ A high-performance, SEO-optimized university finder web application built with N
 
 **[https://shabuj-university-finder.vercel.app/](https://shabuj-university-finder.vercel.app/)**
 
+## 🏗️ Architecture Overview
+
+```
+Client (Filters + Compare UI)
+        ↓
+Server Component (/universities page)
+        ↓
+API Route (/api/universities)
+        ↓
+Filtering Logic (lib/universities.ts)
+        ↓
+Data Layer (In-memory store, DB-ready)
+```
+
+**Key Constraint**: Filtering occurs strictly on the server. No client-side data processing is performed.
+
 ## 📋 Features
 
 ### Core Features
@@ -21,12 +37,12 @@ A high-performance, SEO-optimized university finder web application built with N
   - Scholarship availability
   - Multiple sorting options (by tuition or ranking, ascending/descending)
 
-### Innovative Features
-- **Compare Universities**: Select and compare up to 2 universities side-by-side in a sleek Material Design modal
+### Advanced Features
+- **Compare Universities**: Select and compare up to 2 universities side-by-side in a Material Design modal
 - **Compact Comparison View**: Single-view comparison modal with no scrolling required
 - **Smart Value Highlighting**: Automatic "Best Value" badges for universities with better ranking AND lower tuition
-- **Dynamic Insights**: AI-powered comparison insights highlighting key differences
-- **Material Design UI**: Modern, clean interface with Google Material Icons
+- **Dynamic Insights**: Intelligent comparison analysis highlighting key differences
+- **Material Design UI**: Clean, modern interface with Google Material Icons
 - **Range Slider**: Interactive tuition fee slider with real-time value display
 - **Dynamic SEO**: Metadata updates based on active filters for better search engine visibility
 - **Responsive Design**: Fully optimized for mobile, tablet, and desktop devices
@@ -34,17 +50,17 @@ A high-performance, SEO-optimized university finder web application built with N
 - **Smart Highlighting**: Visual indicators for better values in comparisons
 - **URL-based State**: Shareable filter URLs for easy collaboration
 
-### Technical Excellence
-- ✅ Next.js 16 (Turbopack) App Router with Server Components
-- ✅ TypeScript for complete type safety
-- ✅ Server-side filtering (zero client-side data processing)
-- ✅ SEO-optimized with dynamic metadata generation
-- ✅ Material Design aesthetic with Google Material Icons
-- ✅ Clean Architecture with strict separation of concerns
-- ✅ Accessible UI with semantic HTML and ARIA labels
-- ✅ Performance-optimized rendering with async components
-- ✅ Git workflow with conventional commits
-- ✅ Deployed on Vercel with automatic CI/CD
+### Technical Implementation
+- Next.js 16 (Turbopack) App Router with Server Components
+- TypeScript for complete type safety
+- Server-side filtering (zero client-side data processing)
+- SEO-optimized with dynamic metadata generation
+- Material Design aesthetic with Google Material Icons
+- Clean Architecture with strict separation of concerns
+- Accessible UI with semantic HTML and ARIA labels
+- Performance-optimized rendering with async components
+- Git workflow with conventional commits
+- Deployed on Vercel with automatic CI/CD
 
 ## 🛠️ Tech Stack
 
@@ -126,8 +142,8 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
 
 ### Compare Feature
 
-Innovative comparison system featuring:
-- **Material Design Cards**: Beautiful card-based layout with university avatars
+Comprehensive comparison system featuring:
+- **Material Design Cards**: Card-based layout with university avatars
 - **Color-Coded Avatars**: Unique color palette for each university
 - **Compact Single-View Design**: No scrolling required - everything fits in one view
 - **Smart Value Detection**: Automatic "Best Value" badges for universities with superior ranking AND lower tuition
@@ -137,12 +153,12 @@ Innovative comparison system featuring:
 - **Interactive Elements**: Hover effects, smooth animations, and clear CTAs
 
 ### Material Design Implementation
-- **Google Material Icons** integrated throughout the application
-- **Range Slider** for tuition fee filtering with real-time value display
-- **Card-based Layout** for university listings and comparisons
-- **Smooth Animations** with custom keyframe animations
-- **Dark Mode Support** across all components
-- **Elevation & Shadows** following Material Design elevation system
+- Google Material Icons integrated throughout the application
+- Range slider for tuition fee filtering with real-time value display
+- Card-based layout for university listings and comparisons
+- Smooth animations with custom keyframe animations
+- Dark mode support across all components
+- Elevation and shadows following Material Design elevation system
 
 ## 🚀 Getting Started
 
@@ -200,17 +216,17 @@ Each university contains:
 - **ieltsRequirement**: Minimum IELTS score required
 
 The dataset includes **30 real universities** from prestigious institutions worldwide:
-- 🇺🇸 USA: Harvard, Stanford, MIT, Princeton, Yale, UC Berkeley
-- 🇬🇧 UK: Oxford, Cambridge, Imperial, UCL, Edinburgh, Manchester, King's
-- 🇨🇦 Canada: Toronto, UBC, McGill, Waterloo
-- 🇦🇺 Australia: Melbourne, ANU, Sydney, Monash
-- 🇨🇭 Switzerland: ETH Zurich
-- 🇸🇬 Singapore: NUS, NTU
-- 🇩🇪 Germany: TUM, LMU Munich
-- 🇯🇵 Japan: University of Tokyo
-- 🇰🇷 South Korea: Seoul National University
-- 🇳🇿 New Zealand: University of Auckland
-- 🇭🇰 Hong Kong: University of Hong Kong
+- USA: Harvard, Stanford, MIT, Princeton, Yale, UC Berkeley
+- UK: Oxford, Cambridge, Imperial, UCL, Edinburgh, Manchester, King's
+- Canada: Toronto, UBC, McGill, Waterloo
+- Australia: Melbourne, ANU, Sydney, Monash
+- Switzerland: ETH Zurich
+- Singapore: NUS, NTU
+- Germany: TUM, LMU Munich
+- Japan: University of Tokyo
+- South Korea: Seoul National University
+- New Zealand: University of Auckland
+- Hong Kong: University of Hong Kong
 
 ## 🎨 Design Principles
 
@@ -235,30 +251,30 @@ This project follows conventional commit standards:
 
 All commits are small, focused, and descriptive for easy code review.
 
-## 🌟 Innovative Additions
+## Additional Features
 
-Beyond the basic requirements, this project includes:
+Beyond the core requirements, this project includes:
 
-1. **Real-Time Search Bar**: Live search with instant filtering across name, city, and country
-2. **Smart Compare System**: 
+1. **Real-Time Search**: Debounced search with instant filtering across name, city, and country
+2. **Compare System**: 
    - Visual highlighting of better values in comparison
    - Automatic "Best Value" badge detection
    - Dynamic comparison insights
    - Compact single-view modal design
 3. **Interactive Range Slider**: Custom-styled tuition fee slider with real-time value display
-4. **Material Design Excellence**: 
+4. **Material Design Implementation**: 
    - Google Material Icons integration
    - Card-based layouts with elevation
    - Smooth animations and transitions
    - Complete dark mode support
 5. **Filter Persistence**: URL-based filtering for shareable links
-6. **Empty States**: Helpful messaging and clear CTAs when no results are found
-7. **Visual Feedback**: Icons, colors, animations, and loading states for superior UX
+6. **Empty States**: Clear messaging when no results are found
+7. **Visual Feedback**: Loading states, animations, and status indicators
 8. **Independent Scrolling**: Sidebar filters with overscroll prevention
-9. **Hydration-Safe Components**: Browser extension compatibility with suppressHydrationWarning
-10. **Avatar Generation**: Color-coded university initials in comparison view
+9. **Hydration-Safe Components**: Browser extension compatibility
+10. **Intelligent Avatar Generation**: Meaningful university abbreviations in comparison view
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
 - Database integration (PostgreSQL/MongoDB with Prisma ORM)
 - User authentication for saving favorite universities
@@ -271,20 +287,20 @@ Beyond the basic requirements, this project includes:
 - Application deadline tracking
 - Financial aid calculator
 
-## ⚡ Performance Optimizations
+## Performance Optimizations
 
 1. **Server Components**: Maximum use of React Server Components for zero client JS
-2. **Async/Await**: Next.js 15+ async searchParams API for better performance
+2. **Async/Await**: Next.js 16 async searchParams API for better performance
 3. **Dynamic Routing**: `force-dynamic` export for API routes ensuring fresh data
 4. **Code Splitting**: Automatic code splitting by Next.js for optimal bundle size
-5. **Image Optimization**: Next.js Image component with automatic optimization from Unsplash
+5. **Image Optimization**: Next.js Image component with automatic optimization
 6. **CSS Optimization**: Tailwind CSS with PurgeCSS for minimal CSS bundle
 7. **Font Optimization**: Next.js font optimization for Google Fonts
 8. **Optimized Images**: Responsive images with automatic WebP conversion and lazy loading
 
-## 👨‍💻 Development Approach
+## Development Approach
 
-This project was built with senior-level engineering practices:
+This project was built with professional engineering practices:
 
 - **Type Safety**: Complete TypeScript implementation with strict mode
 - **Separation of Concerns**: Clear separation of data, logic, and presentation layers
@@ -294,15 +310,15 @@ This project was built with senior-level engineering practices:
 - **Comprehensive Error Handling**: Edge case handling and user-friendly error messages
 - **Git Discipline**: Conventional commits with frequent, focused commits
 - **Code Review Ready**: Line-by-line reviewable code structure
-- **Test-Driven Development**: 32 unit tests covering all filter logic with 100% pass rate
+- **Comprehensive Unit Testing**: 32 unit tests covering all filter logic with 100% pass rate
 - **Quality Assurance**: Jest testing framework with comprehensive test coverage
 
-## 🧪 Testing
+## Testing
 
 Comprehensive unit testing with **Jest** and **React Testing Library**:
 
-- **32 unit tests** covering all filtering functionality
-- **100% pass rate** with comprehensive edge case coverage
+- 32 unit tests covering all filtering functionality
+- 100% pass rate with comprehensive edge case coverage
 - Test coverage includes:
   - Search filtering (name, city, country)
   - Country filtering with case-insensitivity
@@ -339,11 +355,11 @@ npm run test:watch
 - **Architecture**: Filtering logic is database-agnostic
 - **Scalability**: All filter functions accept generic parameters for easy DB integration
 
-## 📝 License
+## License
 
 This project was created as part of a technical assessment for **Shabuj Global Education**.
 
-## 🤝 Contributing
+## Contributing
 
 This is an assessment project. The codebase demonstrates production-ready patterns and can serve as a reference for:
 - Next.js 16 App Router implementation
@@ -352,7 +368,7 @@ This is an assessment project. The codebase demonstrates production-ready patter
 - TypeScript best practices
 - SEO optimization techniques
 
-## 📧 Contact
+## Contact
 
 **Repository**: [https://github.com/Nafiz001/shabuj-university-finder](https://github.com/Nafiz001/shabuj-university-finder)
 
@@ -360,6 +376,6 @@ This is an assessment project. The codebase demonstrates production-ready patter
 
 ---
 
-**Built with ❤️ using Next.js 16, TypeScript, Tailwind CSS, and Material Design**
+**Built with Next.js 16, TypeScript, Tailwind CSS, and Material Design**
 
 *Deployed on Vercel with automatic CI/CD*
