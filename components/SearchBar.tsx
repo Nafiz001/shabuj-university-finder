@@ -17,7 +17,7 @@ export default function SearchBar() {
       setSearchTerm(urlSearch);
       setIsSearching(false);
     }
-  }, [searchParams]);
+  }, [searchParams, searchTerm]);
 
   // Cleanup timer on unmount
   useEffect(() => {
