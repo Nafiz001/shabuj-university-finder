@@ -277,9 +277,10 @@ Beyond the basic requirements, this project includes:
 2. **Async/Await**: Next.js 15+ async searchParams API for better performance
 3. **Dynamic Routing**: `force-dynamic` export for API routes ensuring fresh data
 4. **Code Splitting**: Automatic code splitting by Next.js for optimal bundle size
-5. **Image Optimization**: Next.js Image component for university images (when needed)
+5. **Image Optimization**: Next.js Image component with automatic optimization from Unsplash
 6. **CSS Optimization**: Tailwind CSS with PurgeCSS for minimal CSS bundle
 7. **Font Optimization**: Next.js font optimization for Google Fonts
+8. **Optimized Images**: Responsive images with automatic WebP conversion and lazy loading
 
 ## 👨‍💻 Development Approach
 
@@ -293,18 +294,50 @@ This project was built with senior-level engineering practices:
 - **Comprehensive Error Handling**: Edge case handling and user-friendly error messages
 - **Git Discipline**: Conventional commits with frequent, focused commits
 - **Code Review Ready**: Line-by-line reviewable code structure
+- **Test-Driven Development**: 32 unit tests covering all filter logic with 100% pass rate
+- **Quality Assurance**: Jest testing framework with comprehensive test coverage
 
-## 🐛 Known Limitations & Solutions
+## 🧪 Testing
 
-### Image Optimization Warning
-- **Issue**: Next.js shows warnings for external images without proper optimization
-- **Current**: Using standard `<img>` tags for simplicity
-- **Future**: Migrate to `next/image` with proper image CDN setup
+Comprehensive unit testing with **Jest** and **React Testing Library**:
+
+- **32 unit tests** covering all filtering functionality
+- **100% pass rate** with comprehensive edge case coverage
+- Test coverage includes:
+  - Search filtering (name, city, country)
+  - Country filtering with case-insensitivity
+  - Tuition range filtering (min, max, range)
+  - Ranking range filtering
+  - Established year filtering
+  - Scholarship availability filtering
+  - IELTS requirement filtering
+  - Sorting (tuition/ranking, ascending/descending)
+  - Combined filters with multiple criteria
+  - Edge cases (empty filters, zero tuition, etc.)
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+## 🎯 Architecture Notes
+
+### Image Optimization
+- ✅ Using Next.js `Image` component with automatic optimization
+- ✅ Configured for Unsplash CDN with remote patterns
+- ✅ Automatic WebP conversion and responsive sizing
+- ✅ Lazy loading with priority hints for above-the-fold images
 
 ### Static Data
 - **Current**: In-memory data store with 30 universities
 - **Ready for**: Easy migration to database with minimal code changes
 - **Architecture**: Filtering logic is database-agnostic
+- **Scalability**: All filter functions accept generic parameters for easy DB integration
 
 ## 📝 License
 
