@@ -73,21 +73,22 @@ export default function Filters() {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 sticky top-24">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-          <span className="material-icons text-green-600">filter_alt</span>
-          Filters
-        </h2>
-        <button
-          onClick={handleReset}
-          className="text-sm text-green-600 hover:text-green-700 font-medium transition-colors"
-        >
-          Reset All
-        </button>
-      </div>
+    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto overscroll-contain">
+      <div className="p-6 space-y-6">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+            <span className="material-icons text-green-600">filter_alt</span>
+            Filters
+          </h2>
+          <button
+            onClick={handleReset}
+            className="text-sm text-green-600 hover:text-green-700 font-medium transition-colors"
+          >
+            Reset All
+          </button>
+        </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
         {/* Country Filter */}
         <div>
           <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wider">
@@ -259,6 +260,7 @@ export default function Filters() {
           Apply Filters
         </button>
       </form>
+      </div>
     </div>
   );
 }
