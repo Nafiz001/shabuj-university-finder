@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { filterUniversities, FilterParams } from '@/lib/universities';
 import Filters from '@/components/Filters';
 import UniversityList from '@/components/UniversityList';
+import Navbar from '@/components/Navbar';
 
 interface PageProps {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -66,38 +67,74 @@ export default function UniversitiesPage({ searchParams }: PageProps) {
   const universities = filterUniversities(filterParams);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">
-          Find Your Perfect University
-        </h1>
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Sidebar Filters */}
+            <aside className="w-full lg:w-1/4 flex-shrink-0">
+              <Filters />
+            </aside>
 
-        <Filters />
+            {/* Main Content */}
+            <main className="w-full lg:w-3/4">
+              {/* Search and Sort Bar */}
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 mb-6">
+                <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+                  <div className="relative w-full md:w-96">
+                    <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <span className="material-icons text-gray-400">search</span>
+                    </span>
+                    <input
+                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-green-600 focus:border-green-600 sm:text-sm"
+                      placeholder="Search by name, city, or course..."
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
 
-        <div className="mb-6">
-          <p className="text-lg text-gray-700">
-            <span className="font-semibold">{universities.length}</span>{' '}
-            {universities.length === 1 ? 'university' : 'universities'} found
-          </p>
+              {/* Results Count */}
+              <div className="mb-4 flex items-center justify-between">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Showing{' '}
+                  <span className="font-semibold text-gray-900 dark:text-white">
+                    {universities.length}
+                  </span>{' '}
+                  {universities.length === 1 ? 'university' : 'universities'}
+                </p>
+              </div>
+
+              {/* University Grid */}
+              {universities.length > 0 ? (
+                <UniversityList universities={universities} />
+              ) : (
+                <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-12 text-center">
+                  <span className="material-icons text-6xl text-gray-400 mb-4">
+                    search_off
+                  </span>
+                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                    No universities found
+                  </h2>
+                  <p className="text-gray-600 dark:text-gray-400 mb-6">
+                    Try adjusting your filters to see more results
+                  </p>
+                  <a
+                    href="/universities"
+                    className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200"
+                  >
+                    Clear All Filters
+                  </a>
+                </div>
+              )}
+            </main>
+          </div>
         </div>
-
-        {universities.length > 0 ? (
-          <UniversityList universities={universities} />
-        ) : (
-          <div className="bg-white rounded-lg shadow-md p-12 text-center">
-            <svg
-              className="mx-auto h-12 w-12 text-gray-400 mb-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+      </div>
+    </>
+  );
+}
             <h2 className="text-2xl font-semibold text-gray-900 mb-2">
               No universities found
             </h2>
