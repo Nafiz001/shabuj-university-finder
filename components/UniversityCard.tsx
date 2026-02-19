@@ -1,6 +1,7 @@
 'use client';
 
 import { University } from '@/lib/universities';
+import Image from 'next/image';
 
 interface UniversityCardProps {
   university: University;
@@ -32,10 +33,13 @@ export default function UniversityCard({
     <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col h-full">
       {/* Image Section */}
       <div className="relative h-48">
-        <img
+        <Image
           alt={`${university.name} campus`}
-          className="w-full h-full object-cover"
+          className="object-cover"
           src={imageUrl}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={false}
         />
         <div className="absolute top-4 right-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-gray-800 dark:text-white flex items-center shadow-sm">
           <span className="material-icons text-yellow-500 text-sm mr-1">star</span>
