@@ -3,6 +3,7 @@ import { filterUniversities, FilterParams } from '@/lib/universities';
 import Filters from '@/components/Filters';
 import UniversityList from '@/components/UniversityList';
 import Navbar from '@/components/Navbar';
+import SearchBar from '@/components/SearchBar';
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -40,6 +41,7 @@ export default async function UniversitiesPage({ searchParams }: PageProps) {
   
   // Parse search parameters for server-side filtering
   const filterParams: FilterParams = {
+    search: params.search as string,
     country: params.country as string,
     minTuition: params.minTuition
       ? Number(params.minTuition)
@@ -85,17 +87,7 @@ export default async function UniversitiesPage({ searchParams }: PageProps) {
               {/* Search and Sort Bar */}
               <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 mb-6">
                 <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-                  <div className="relative w-full md:w-96">
-                    <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span className="material-icons text-gray-400">search</span>
-                    </span>
-                    <input
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-green-600 focus:border-green-600 sm:text-sm"
-                      placeholder="Search by name, city, or course..."
-                      type="text"
-                      suppressHydrationWarning
-                    />
-                  </div>
+                  <SearchBar />
                 </div>
               </div>
 

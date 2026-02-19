@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
 
     // Parse query parameters
     const filterParams: FilterParams = {
+      search: searchParams.get('search') || undefined,
       country: searchParams.get('country') || undefined,
       minTuition: searchParams.get('minTuition')
         ? Number(searchParams.get('minTuition'))

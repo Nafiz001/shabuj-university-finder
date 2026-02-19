@@ -11,6 +11,7 @@ export interface University {
 }
 
 export interface FilterParams {
+  search?: string;
   country?: string;
   minTuition?: number;
   maxTuition?: number;
@@ -364,6 +365,17 @@ export const universities: University[] = [
  */
 export function filterUniversities(params: FilterParams): University[] {
   let filtered = [...universities];
+
+  // Apply search filter
+  if (params.search) {
+    const searchTerm = params.search.toLowerCase();
+    filtered = filtered.filter(
+      (uni) =>
+        uni.name.toLowerCase().includes(searchTerm) ||
+        uni.city.toLowerCase().includes(searchTerm) ||
+        uni.country.toLowerCase().includes(searchTerm)
+    );
+  }
 
   // Apply filters
   if (params.country) {
