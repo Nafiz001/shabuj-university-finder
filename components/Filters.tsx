@@ -83,6 +83,7 @@ export default function Filters() {
           <button
             onClick={handleReset}
             className="text-sm text-green-600 hover:text-green-700 font-medium transition-colors"
+            suppressHydrationWarning
           >
             Reset All
           </button>
@@ -110,6 +111,7 @@ export default function Filters() {
                     }
                   }}
                   className="form-checkbox h-4 w-4 text-green-600 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:ring-green-600"
+                  suppressHydrationWarning
                 />
                 <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
                   {country}
@@ -136,6 +138,7 @@ export default function Filters() {
               value={filters.maxTuition}
               onChange={handleChange}
               className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-green-600"
+              suppressHydrationWarning
             />
             <div className="flex justify-between mt-2 text-xs text-gray-500 dark:text-gray-400">
               <span>$0</span>
@@ -159,6 +162,7 @@ export default function Filters() {
             value={filters.maxRanking}
             onChange={handleChange}
             className="block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white shadow-sm focus:border-green-600 focus:ring focus:ring-green-600 focus:ring-opacity-50 text-sm py-2 px-3"
+            suppressHydrationWarning
           >
             <option value="">All</option>
             <option value="50">Top 50</option>
@@ -179,6 +183,7 @@ export default function Filters() {
             value={filters.maxIelts}
             onChange={handleChange}
             className="block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white shadow-sm focus:border-green-600 focus:ring focus:ring-green-600 focus:ring-opacity-50 text-sm py-2 px-3"
+            suppressHydrationWarning
           >
             <option value="">Any</option>
             <option value="6.0">6.0</option>
@@ -210,6 +215,7 @@ export default function Filters() {
                     }));
                   }}
                   className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-600 dark:border-gray-600 dark:bg-gray-700"
+                  suppressHydrationWarning
                 />
               </div>
               <div className="ml-3 text-sm">
@@ -236,6 +242,7 @@ export default function Filters() {
             value={filters.sortBy}
             onChange={handleChange}
             className="block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white shadow-sm focus:border-green-600 focus:ring focus:ring-green-600 focus:ring-opacity-50 text-sm py-2 px-3 mb-3"
+            suppressHydrationWarning
           >
             <option value="">Default</option>
             <option value="ranking">Top Ranked</option>
@@ -246,6 +253,7 @@ export default function Filters() {
             value={filters.order}
             onChange={handleChange}
             className="block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white shadow-sm focus:border-green-600 focus:ring focus:ring-green-600 focus:ring-opacity-50 text-sm py-2 px-3"
+            suppressHydrationWarning
           >
             <option value="asc">Ascending</option>
             <option value="desc">Descending</option>
@@ -256,6 +264,7 @@ export default function Filters() {
         <button
           type="submit"
           className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-md shadow-green-500/30"
+          suppressHydrationWarning
         >
           Apply Filters
         </button>
