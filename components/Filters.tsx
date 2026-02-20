@@ -195,6 +195,30 @@ export default function Filters() {
 
         <hr className="border-gray-200 dark:border-gray-700" />
 
+        {/* Established Year */}
+        <div>
+          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wider">
+            Established After
+          </h3>
+          <select
+            name="establishedAfter"
+            value={filters.establishedAfter}
+            onChange={handleChange}
+            className="block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white shadow-sm focus:border-green-600 focus:ring focus:ring-green-600 focus:ring-opacity-50 text-sm py-2 px-3"
+            suppressHydrationWarning
+          >
+            <option value="">Any Year</option>
+            <option value="1600">Before 1700</option>
+            <option value="1700">After 1700</option>
+            <option value="1800">After 1800</option>
+            <option value="1900">After 1900</option>
+            <option value="1950">After 1950</option>
+            <option value="2000">After 2000</option>
+          </select>
+        </div>
+
+        <hr className="border-gray-200 dark:border-gray-700" />
+
         {/* Opportunities */}
         <div>
           <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wider">
