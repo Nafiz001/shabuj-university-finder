@@ -9,15 +9,21 @@ export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
   const [isSearching, setIsSearching] = useState(false);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+  const isTyping = useRef(false); // Track if user is actively typing
 
-  // Update search term when URL changes
+  // Update search term from URL only when NOT actively typing
   useEffect(() => {
+    // Skip sync if user is currently typing to prevent flickering
+    if (isTyping.current) {
+      return;
+    }
+
     const urlSearch = searchParams.get('search') || '';
     if (urlSearch !== searchTerm) {
       setSearchTerm(urlSearch);
       setIsSearching(false);
     }
-  }, [searchParams, searchTerm]);
+  }, [searchParams]); // Removed searchTerm from deps to prevent extra renders
 
   // Cleanup timer on unmount
   useEffect(() => {
@@ -29,6 +35,8 @@ export default function SearchBar() {
   }, []);
 
   const handleSearch = (value: string) => {
+    // Mark that user is actively typing
+    isTyping.current = true;
     setSearchTerm(value);
     setIsSearching(true);
 
@@ -51,12 +59,18 @@ export default function SearchBar() {
       // Update URL with new search parameter
       router.push(`/universities?${params.toString()}`);
       setIsSearching(false);
+      
+      // Allow URL sync again after debounce completes
+      setTimeout(() => {
+        isTyping.current = false;
+      }, 100);
     }, 500);
   };
 
   const handleClear = () => {
     setSearchTerm('');
     setIsSearching(false);
+    isTyping.current = false; // Reset typing flag
     
     // Clear any pending debounce timer
     if (debounceTimer.current) {
